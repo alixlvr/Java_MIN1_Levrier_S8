@@ -23,7 +23,7 @@ public class VehiculeDao {
 	private static final String DELETE_VEHICLE_QUERY = "DELETE FROM Vehicule WHERE id=?;";
 	private static final String FIND_VEHICLE_QUERY = "SELECT id, constructeur, modele, nb_places FROM Vehicule WHERE id=?;";
 	private static final String FIND_VEHICLES_QUERY = "SELECT id, constructeur, modele, nb_places FROM Vehicule;";
-
+	private static final String COUNT_VEHICULES_QUERY = "SELECT COUNT(*) FROM Vehicule;";
 	public long create(Vehicule vehicule) throws DaoException {
 		try(Connection connection = ConnectionManager.getConnection();
 			Statement statement = connection.createStatement();
@@ -131,7 +131,22 @@ public class VehiculeDao {
 		} catch (SQLException e) {
 			throw new DaoException("Erreur lors de la recherche des vehicules de l'etablissement", e);
 		}
-		
+	}
+
+	public int count() throws DaoException{
+		try(Connection connection = ConnectionManager.getConnection();
+			Statement statement = connection.createStatement();
+			PreparedStatement ps = connection.prepareStatement(COUNT_VEHICULES_QUERY);){
+
+			ResultSet resultSet = ps.executeQuery();
+			if (resultSet.next()) {
+				return resultSet.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			throw new DaoException("Erreur lors du comptage des vehicules de l'etablissement",e);
+		}
+		return -1;
 	}
 	
 

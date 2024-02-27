@@ -70,5 +70,14 @@ public class VehiculeService {
 			throw new ServiceException("Erreur lors de la suppresion des vehicules par ID(service)", e);
 		}
 	}
+
+	public int count() throws ServiceException{
+		// count nombre de vehicule
+		try {
+			return vehiculeDao.count();
+		} catch(DaoException e) {
+			throw new ServiceException("Erreur lors de la suppresion des vehicules par ID(service)", e);
+		}
+	}
 	
 }
