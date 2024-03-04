@@ -1,21 +1,28 @@
-C:\Users\alixl\OneDrive\Documents\epf\S8\Java\Cours 4\rentmanager\src\main\java\com\epf\rentmanager\persistence\ConnectionManager.java
-C:\Users\alixl\OneDrive\Documents\epf\S8\Java\Cours 4\rentmanager\src\main\java\com\epf\rentmanager\ui\cli\ClientUi.java
-C:\Users\alixl\OneDrive\Documents\epf\S8\Java\Cours 4\rentmanager\src\main\java\com\epf\rentmanager\Exception\ServiceException.java
-C:\Users\alixl\OneDrive\Documents\epf\S8\Java\Cours 4\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehicleListServlet.java
-C:\Users\alixl\OneDrive\Documents\epf\S8\Java\Cours 4\rentmanager\src\main\java\com\epf\rentmanager\dao\ReservationDao.java
-C:\Users\alixl\OneDrive\Documents\epf\S8\Java\Cours 4\rentmanager\src\main\java\com\epf\rentmanager\model\Client.java
-C:\Users\alixl\OneDrive\Documents\epf\S8\Java\Cours 4\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehicleCreateServlet.java
-C:\Users\alixl\OneDrive\Documents\epf\S8\Java\Cours 4\rentmanager\src\main\java\com\epf\rentmanager\model\Vehicule.java
-C:\Users\alixl\OneDrive\Documents\epf\S8\Java\Cours 4\rentmanager\src\main\java\com\epf\rentmanager\persistence\FillDatabase.java
-C:\Users\alixl\OneDrive\Documents\epf\S8\Java\Cours 4\rentmanager\src\main\java\com\epf\rentmanager\service\ClientService.java
-C:\Users\alixl\OneDrive\Documents\epf\S8\Java\Cours 4\rentmanager\src\main\java\com\epf\rentmanager\servlet\HomeServlet.java
-C:\Users\alixl\OneDrive\Documents\epf\S8\Java\Cours 4\rentmanager\src\main\java\com\epf\rentmanager\utils\IOUtils.java
-C:\Users\alixl\OneDrive\Documents\epf\S8\Java\Cours 4\rentmanager\src\main\java\com\epf\rentmanager\model\Reservation.java
-C:\Users\alixl\OneDrive\Documents\epf\S8\Java\Cours 4\rentmanager\src\main\java\com\epf\rentmanager\ui\cli\VehiculeUi.java
-C:\Users\alixl\OneDrive\Documents\epf\S8\Java\Cours 4\rentmanager\src\main\java\com\epf\rentmanager\dao\ClientDao.java
-C:\Users\alixl\OneDrive\Documents\epf\S8\Java\Cours 4\rentmanager\src\main\java\com\epf\rentmanager\service\VehiculeService.java
-C:\Users\alixl\OneDrive\Documents\epf\S8\Java\Cours 4\rentmanager\src\main\java\com\epf\rentmanager\Exception\DaoException.java
-C:\Users\alixl\OneDrive\Documents\epf\S8\Java\Cours 4\rentmanager\src\main\java\com\epf\rentmanager\service\ReservationService.java
-C:\Users\alixl\OneDrive\Documents\epf\S8\Java\Cours 4\rentmanager\src\main\java\com\epf\rentmanager\dao\VehiculeDao.java
-C:\Users\alixl\OneDrive\Documents\epf\S8\Java\Cours 4\rentmanager\src\main\java\com\epf\rentmanager\ui\cli\main.java
-C:\Users\alixl\OneDrive\Documents\epf\S8\Java\Cours 4\rentmanager\src\main\java\com\epf\rentmanager\ui\cli\ReservationUi.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\ClientCreateServlet.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehiculeCreateServlet.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\ClientListServlet.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\ui\cli\ClientUi.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\HomeServlet.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\Exception\DaoException.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\ui\cli\VehiculeUi.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\model\Vehicule.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\ui\cli\ReservationUi.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\persistence\ConnectionManager.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\model\Client.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\dao\ClientDao.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\Exception\ServiceException.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\utils\IOUtils.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\ClientSupprimerServlet.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\ReservationListServlet.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\persistence\FillDatabase.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\dao\VehiculeDao.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\ui\cli\main.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\dao\ReservationDao.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\service\VehiculeService.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\model\Reservation.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\ReservationSupprimerServlet.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehiculeListServlet.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\service\ReservationService.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\ReservationCreateServlet.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehiculeSupprimerServlet.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\service\ClientService.java

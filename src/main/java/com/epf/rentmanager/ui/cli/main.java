@@ -35,7 +35,6 @@ public class main {
             String choix = scanner.nextLine();
             switch (choix) {
                 case "a":
-                    //not working
                     System.out.println("Création d'un nouveau client :");
                     long newClientId = clientUi.createClient();
                     System.out.println("Nouveau client créé avec l'ID : " + newClientId);

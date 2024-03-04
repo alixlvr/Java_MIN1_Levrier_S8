@@ -7,17 +7,17 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">NAVIGATION</li>
             <li>
-                <a href="${pageContext.request.contextPath}/users">
+                <a href="${pageContext.request.contextPath}/client/list">
                     <i class="fa fa-user"></i> <span>Utilisateurs</span>
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/cars">
+                <a href="${pageContext.request.contextPath}/vehicules/list">
                     <i class="fa fa-car"></i> <span>Voitures</span>
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/rents">
+                <a href="${pageContext.request.contextPath}/reservation/list">
                     <i class="fa fa-pencil"></i> <span>Reservations</span>
                 </a>
             </li>

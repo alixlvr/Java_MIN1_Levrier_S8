@@ -72,7 +72,6 @@ public class VehiculeService {
 	}
 
 	public int count() throws ServiceException{
-		// count nombre de vehicule
 		try {
 			return vehiculeDao.count();
 		} catch(DaoException e) {

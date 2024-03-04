@@ -79,4 +79,12 @@ public class ReservationService {
             throw new ServiceException("Erreur lors de la suppression des vehicules (service)", e);
         }
     }
+
+    public int count() throws ServiceException{
+        try {
+            return reservationDao.count();
+        } catch(DaoException e) {
+            throw new ServiceException("Erreur lors de la recuperation de la DAO client (compter le nb de client)", e);
+        }
+    }
 }

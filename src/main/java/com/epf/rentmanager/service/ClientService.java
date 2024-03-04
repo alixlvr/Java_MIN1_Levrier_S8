@@ -70,5 +70,13 @@ public class ClientService {
 			throw new ServiceException("Erreur lors de la suppression des clients (service)", e);
 		}
 	}
+
+	public int count() throws ServiceException{
+		try {
+			return clientDao.count();
+		} catch(DaoException e) {
+			throw new ServiceException("Erreur lors de la recuperation de la DAO client (compter le nb de client)", e);
+		}
+	}
 	
 }
