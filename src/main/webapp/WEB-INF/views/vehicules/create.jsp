@@ -32,7 +32,7 @@
                         <form class="form-horizontal" method="post">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="constructueur" class="col-sm-2 control-label">Marque</label>
+                                    <label for="constructeur" class="col-sm-2 control-label">Marque</label>
 
 									<!-- Pour r�up�rer la valeur rentr�e dans un champ input de cette jsp au niveau de votre servlet -->
 									<!-- vous devez passer par les methodes getParameter de l'objet request, est sp�cifiant la valeur -->

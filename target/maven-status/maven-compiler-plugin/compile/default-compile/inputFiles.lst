@@ -1,3 +1,4 @@
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\configuration\WebConfiguration.java
 C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\ClientCreateServlet.java
 C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehiculeCreateServlet.java
 C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\ClientListServlet.java
@@ -14,6 +15,8 @@ C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\
 C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\utils\IOUtils.java
 C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\ClientSupprimerServlet.java
 C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\ReservationListServlet.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\configuration\AppConfiguration.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\ui\cli\CommandLine.java
 C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\persistence\FillDatabase.java
 C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\dao\VehiculeDao.java
 C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\ui\cli\main.java

@@ -9,11 +9,11 @@ public class main {
     public static void main(String[] args) {
 
         // Création d'une instance de ClientUi
-        ClientUi clientUi = ClientUi.getInstance();
+        ClientUi clientUi = new ClientUi();
         //creation d'une instance de vehiculeUi
-        VehiculeUi vehiculeUi = VehiculeUi.getInstance();
+        VehiculeUi vehiculeUi = new VehiculeUi();
         //creation d'une instance de vehiculeUi
-        ReservationUi reservationUi = ReservationUi.getInstance();
+        ReservationUi reservationUi = new ReservationUi();
 
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;

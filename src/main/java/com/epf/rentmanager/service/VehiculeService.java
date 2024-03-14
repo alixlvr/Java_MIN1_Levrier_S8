@@ -4,25 +4,19 @@ import com.epf.rentmanager.Exception.DaoException;
 import com.epf.rentmanager.Exception.ServiceException;
 import com.epf.rentmanager.dao.VehiculeDao;
 import com.epf.rentmanager.model.Vehicule;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class VehiculeService {
 
-	private VehiculeDao vehiculeDao;
-	public static VehiculeService instance;
-	
-	private VehiculeService() {
-		this.vehiculeDao = VehiculeDao.getInstance();
+	private final VehiculeDao vehiculeDao;
+
+	public VehiculeService(VehiculeDao vehiculeDao) {
+		this.vehiculeDao = vehiculeDao;
 	}
-	
-	public static VehiculeService getInstance() {
-		if (instance == null) {
-			instance = new VehiculeService();
-		}
-		
-		return instance;
-	}
+
 	
 	
 	public long create(Vehicule vehicule) throws ServiceException {

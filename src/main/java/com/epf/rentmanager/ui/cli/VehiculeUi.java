@@ -1,9 +1,12 @@
 package com.epf.rentmanager.ui.cli;
 
 import com.epf.rentmanager.Exception.ServiceException;
+import com.epf.rentmanager.configuration.AppConfiguration;
 import com.epf.rentmanager.model.Vehicule;
 import com.epf.rentmanager.service.VehiculeService;
 import com.epf.rentmanager.utils.IOUtils;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.List;
 
@@ -12,16 +15,17 @@ public class VehiculeUi {
     private VehiculeService vehiculeService;
     public static VehiculeUi instance;
 
-    private VehiculeUi() {
-        this.vehiculeService = VehiculeService.getInstance();
+    public VehiculeUi() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfiguration.class);
+        this.vehiculeService = context.getBean(VehiculeService.class);
     }
 
-    public static VehiculeUi getInstance() {
-        if (instance == null) {
-            instance = new VehiculeUi();
-        }
-        return instance;
-    }
+//    public static VehiculeUi getInstance() {
+//        if (instance == null) {
+//            instance = new VehiculeUi();
+//        }
+//        return instance;
+//    }
 
     public long createVehicule() {
         int id = 0;

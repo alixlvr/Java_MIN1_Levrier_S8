@@ -2,6 +2,8 @@ package com.epf.rentmanager.servlet;
 
 import com.epf.rentmanager.model.Vehicule;
 import com.epf.rentmanager.service.VehiculeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,8 +16,14 @@ import java.io.IOException;
 public class VehiculeCreateServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
+    @Autowired
     private VehiculeService vehiculeService;
 
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -30,7 +38,7 @@ public class VehiculeCreateServlet extends HttpServlet {
             int places = Integer.parseInt(request.getParameter("nb_places"));
 
             Vehicule vehicule = new Vehicule(0, marque, modele, places);
-            VehiculeService.getInstance().create(vehicule);
+            vehiculeService.create(vehicule);
             response.sendRedirect(request.getContextPath() + "/vehicules/list");
 
         } catch (Exception e) {

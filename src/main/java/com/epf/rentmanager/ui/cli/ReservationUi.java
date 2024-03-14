@@ -1,9 +1,12 @@
 package com.epf.rentmanager.ui.cli;
 
 import com.epf.rentmanager.Exception.ServiceException;
+import com.epf.rentmanager.configuration.AppConfiguration;
 import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.service.ReservationService;
 import com.epf.rentmanager.utils.IOUtils;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,15 +16,9 @@ public class ReservationUi {
     private final ReservationService reservationService;
     public static ReservationUi instance;
 
-    private ReservationUi() {
-        this.reservationService = ReservationService.getInstance();
-    }
-
-    public static ReservationUi getInstance() {
-        if (instance == null) {
-            instance = new ReservationUi();
-        }
-        return instance;
+    public ReservationUi() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfiguration.class);
+        this.reservationService = context.getBean(ReservationService.class);
     }
 
     public long createReservation() {

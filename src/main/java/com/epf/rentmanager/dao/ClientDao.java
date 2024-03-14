@@ -3,23 +3,25 @@ package com.epf.rentmanager.dao;
 import com.epf.rentmanager.Exception.DaoException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.persistence.ConnectionManager;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class ClientDao {
-	
-	private static ClientDao instance = null;
-	private ClientDao() {}
+	public ClientDao() {}
 
-	public static ClientDao getInstance() {
-		if(instance == null) {
-			instance = new ClientDao();
-		}
-		return instance;
-	}
+//	private static ClientDao instance = null;
+//	private ClientDao() {}
+//	public static ClientDao getInstance() {
+//		if(instance == null) {
+//			instance = new ClientDao();
+//		}
+//		return instance;
+//	}
 	
 	private static final String CREATE_CLIENT_QUERY = "INSERT INTO Client(nom, prenom, email, naissance) VALUES(?, ?, ?, ?);";
 	private static final String DELETE_CLIENT_QUERY = "DELETE FROM Client WHERE id=?;";

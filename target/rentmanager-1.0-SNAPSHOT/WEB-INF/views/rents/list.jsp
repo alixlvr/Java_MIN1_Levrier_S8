@@ -15,7 +15,7 @@
         <section class="content-header">
             <h1>
                 Reservations
-                <a class="btn btn-primary" href="${pageContext.request.contextPath}/rents/create">Ajouter</a>
+                <a class="btn btn-primary" href="${pageContext.request.contextPath}/reservation/create">Ajouter</a>
             </h1>
         </section>
 
@@ -35,11 +35,13 @@
                                     <th>Action</th>
                                 </tr>
                                 <tr>
-                                    <td>1.</td>
-                                    <td>Renault Clio</td>
-                                    <td>John Doe</td>
-                                    <td>10/01/2019</td>
-                                    <td>13/01/2019</td>
+
+                                <c:forEach items="${reservation}" var="reservation">
+                                    <td>${reservation.id}.</td>
+                                    <td>${reservation.client_id}</td>
+                                    <td>${reservation.vehicule_id}</td>
+                                    <td>${reservation.debut}</td>
+                                    <td>${reservation.fin}</td>
                                     <td>
                                         <a class="btn btn-primary disabled" href="${pageContext.request.contextPath}/cars?id=1">
                                             <i class="fa fa-play"></i>
@@ -52,25 +54,7 @@
                                         </a>
                                     </td>
                                 </tr>
-
-                                <tr>
-                                    <td>2.</td>
-                                    <td>Citroen C2</td>
-                                    <td>Jane Doe</td>
-                                    <td>10/01/2019</td>
-                                    <td>13/01/2019</td>
-                                    <td>
-                                        <a class="btn btn-primary disabled" href="${pageContext.request.contextPath}/cars?id=2">
-                                            <i class="fa fa-play"></i>
-                                        </a>
-                                        <a class="btn btn-success disabled" href="#">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <a class="btn btn-danger disabled" href="#">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                                </c:forEach>
                             </table>
                         </div>
                         <!-- /.box-body -->
