@@ -38,12 +38,16 @@
 
                                 <c:forEach items="${reservation}" var="reservation">
                                     <td>${reservation.id}.</td>
-                                    <td>${reservation.client_id}</td>
                                     <td>${reservation.vehicule_id}</td>
+                                    <td>${reservation.client_id}</td>
                                     <td>${reservation.debut}</td>
                                     <td>${reservation.fin}</td>
                                     <td>
+<<<<<<< Updated upstream
                                         <a class="btn btn-primary disabled" href="${pageContext.request.contextPath}/cars?id=1">
+=======
+                                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/reservation/details?id=${reservation.id}">
+>>>>>>> Stashed changes
                                             <i class="fa fa-play"></i>
                                         </a>
                                         <a class="btn btn-success disabled" href="#">

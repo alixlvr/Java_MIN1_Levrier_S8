@@ -42,7 +42,11 @@
                                     <td>${vehicule.nb_places}</td>
                                     <!--<td>John Doe</td>-->
                                     <td>
+<<<<<<< Updated upstream
                                         <a class="btn btn-primary disabled" href="vehicules-detail.html">
+=======
+                                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/vehicules/details?id=${vehicule.id}">
+>>>>>>> Stashed changes
                                             <i class="fa fa-play"></i>
                                         </a>
                                         <a class="btn btn-success disabled" href="#">

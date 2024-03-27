@@ -42,7 +42,11 @@
                                     <td>${client.email}</td>
                                     <td>${client.naissance}</td>
                                     <td>
+<<<<<<< Updated upstream
                                         <a class="btn btn-primary disabled" href="${pageContext.request.contextPath}/cars?id=1">
+=======
+                                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/client/details?id=${client.id}">
+>>>>>>> Stashed changes
                                             <i class="fa fa-play"></i>
                                         </a>
                                         <a class="btn btn-success disabled" href="#">
