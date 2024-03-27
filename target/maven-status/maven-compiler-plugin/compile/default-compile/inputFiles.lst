@@ -1,4 +1,5 @@
 C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\configuration\WebConfiguration.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehiculeDetailsServlet.java
 C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\ClientCreateServlet.java
 C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehiculeCreateServlet.java
 C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\ClientListServlet.java
@@ -7,6 +8,7 @@ C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\
 C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\Exception\DaoException.java
 C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\ui\cli\VehiculeUi.java
 C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\model\Vehicule.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\ReservationDetailsServlet.java
 C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\ui\cli\ReservationUi.java
 C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\persistence\ConnectionManager.java
 C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\model\Client.java
@@ -29,3 +31,4 @@ C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\
 C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\ReservationCreateServlet.java
 C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehiculeSupprimerServlet.java
 C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\service\ClientService.java
+C:\Users\alixl\OneDrive\Documents\epf\S8\Java\rentmanager\src\main\java\com\epf\rentmanager\servlet\ClientDetailsServlet.java

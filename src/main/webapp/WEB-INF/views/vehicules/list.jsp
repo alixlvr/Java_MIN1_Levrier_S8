@@ -42,7 +42,8 @@
                                     <td>${vehicule.nb_places}</td>
                                     <!--<td>John Doe</td>-->
                                     <td>
-                                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/vehicules/detail?id=${vehicule.id}">
+
+                                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/vehicules/details?id=${vehicule.id}">
                                             <i class="fa fa-play"></i>
                                         </a>
                                         <a class="btn btn-success" href="${pageContext.request.contextPath}/vehicules/edit?id=${vehicule.id}">

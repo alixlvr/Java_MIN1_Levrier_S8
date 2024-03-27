@@ -38,12 +38,12 @@
 
                                 <c:forEach items="${reservation}" var="reservation">
                                     <td>${reservation.id}.</td>
-                                    <td>${reservation.client_id}</td>
                                     <td>${reservation.vehicule_id}</td>
+                                    <td>${reservation.client_id}</td>
                                     <td>${reservation.debut}</td>
                                     <td>${reservation.fin}</td>
                                     <td>
-                                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/cars?id=1">
+                                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/reservation/details?id=${reservation.id}">
                                             <i class="fa fa-play"></i>
                                         </a>
                                         <a class="btn btn-success" href="${pageContext.request.contextPath}/reservation/edit?id=${reservation.id}">
