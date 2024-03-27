@@ -18,8 +18,7 @@ public class ReservationService {
 
 
     public long create(Reservation reservation) throws ServiceException {
-        // TODO: créer une reservation
-        if (reservation.getVehicule_id() == 0 && reservation.getClient_id() == 0) {
+        if (reservation.getVehicule_id() == 0 || reservation.getClient_id() == 0) {
             throw new ServiceException("L'id du client et l'id du vehicule ne doit pas être vide");
         }
         try {
@@ -31,7 +30,6 @@ public class ReservationService {
     }
 
     public Reservation findById(long id) throws ServiceException {
-        // TODO: récupérer un véhicule par son id
         try {
             return reservationDao.findById(id);
         } catch (DaoException e) {
@@ -40,7 +38,6 @@ public class ReservationService {
     }
 
     public List<Reservation> findByClient(long id) throws ServiceException {
-        // TODO: récupérer un véhicule par son id
         try {
             return reservationDao.findResaByClientId(id);
         } catch (DaoException e) {
@@ -49,7 +46,6 @@ public class ReservationService {
     }
 
     public List<Reservation> findByVehicule(long id) throws ServiceException {
-        // TODO: récupérer un véhicule par son id
         try {
             return reservationDao.findResaByVehicleId(id);
         } catch (DaoException e) {
@@ -58,7 +54,6 @@ public class ReservationService {
     }
 
     public List<Reservation> findAll() throws ServiceException {
-        // TODO: récupérer tous les clients
         try {
             return reservationDao.findAll();
         } catch (DaoException e) {
@@ -67,9 +62,24 @@ public class ReservationService {
     }
 
     public long delete(Reservation reservation) throws ServiceException {
-        // TODO: delete un clients
         try {
             return reservationDao.delete(reservation);
+        } catch (DaoException e) {
+            throw new ServiceException("Erreur lors de la suppression des vehicules (service)", e);
+        }
+    }
+
+    public long deleteByClientId(long clientId) throws ServiceException {
+        try {
+            return reservationDao.deleteByIdClient(clientId);
+        } catch (DaoException e) {
+            throw new ServiceException("Erreur lors de la suppression des vehicules (service)", e);
+        }
+    }
+
+    public long deleteByVehiculeId(long vehiculeId) throws ServiceException {
+        try {
+            return reservationDao.deleteByIdVehicule(vehiculeId);
         } catch (DaoException e) {
             throw new ServiceException("Erreur lors de la suppression des vehicules (service)", e);
         }

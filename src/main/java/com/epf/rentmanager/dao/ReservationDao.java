@@ -17,6 +17,8 @@ public class ReservationDao {
 
 	private static final String CREATE_RESERVATION_QUERY = "INSERT INTO Reservation(client_id, vehicule_id, debut, fin) VALUES(?, ?, ?, ?);";
 	private static final String DELETE_RESERVATION_QUERY = "DELETE FROM Reservation WHERE id=?;";
+	private static final String DELETE_RESERVATION_ID_CLIENT_QUERY = "DELETE FROM Reservation WHERE client_id = ?;";
+	private static final String DELETE_RESERVATION_ID_VEHICULE_QUERY = "DELETE FROM Reservation WHERE vehicule_id = ?;";
 	private static final String FIND_RESERVATION_QUERY = "SELECT client_id, vehicule_id, debut, fin FROM Reservation WHERE id=?;";
 	private static final String FIND_RESERVATIONS_BY_CLIENT_QUERY = "SELECT id, vehicule_id, debut, fin FROM Reservation WHERE client_id=?;";
 	private static final String FIND_RESERVATIONS_BY_VEHICLE_QUERY = "SELECT id, client_id, debut, fin FROM Reservation WHERE vehicule_id=?;";
@@ -55,14 +57,52 @@ public class ReservationDao {
 			PreparedStatement ps = connection.prepareStatement(DELETE_RESERVATION_QUERY, statement.RETURN_GENERATED_KEYS);){
 
 			// Assignation des valeurs aux paramètres de la requête
-			ps.setInt(1,reservation.getVehicule_id());
-
+			ps.setInt(1,reservation.getId());
 			// Exécution de la requête
 			ps.execute();
-
 			ResultSet resultSet = ps.getGeneratedKeys();
 			if(resultSet.next()){
                 return resultSet.getInt(1);
+			}
+
+		}catch (SQLException e){
+			throw new DaoException("Erreur lors de la recherche du client par ID", e);
+		}
+		return -1;
+	}
+
+	public long deleteByIdClient(long client_id) throws DaoException {
+		try(Connection connection = ConnectionManager.getConnection();
+			Statement statement = connection.createStatement();
+			PreparedStatement ps = connection.prepareStatement(DELETE_RESERVATION_ID_CLIENT_QUERY, statement.RETURN_GENERATED_KEYS);){
+
+			// Assignation des valeurs aux paramètres de la requête
+			ps.setInt(1, (int) client_id);
+			// Exécution de la requête
+			ps.execute();
+			ResultSet resultSet = ps.getGeneratedKeys();
+			if(resultSet.next()){
+				return resultSet.getInt(1);
+			}
+
+		}catch (SQLException e){
+			throw new DaoException("Erreur lors de la recherche du client par ID", e);
+		}
+		return -1;
+	}
+
+	public long deleteByIdVehicule(long vehicule_id) throws DaoException {
+		try(Connection connection = ConnectionManager.getConnection();
+			Statement statement = connection.createStatement();
+			PreparedStatement ps = connection.prepareStatement(DELETE_RESERVATION_ID_VEHICULE_QUERY, statement.RETURN_GENERATED_KEYS);){
+
+			// Assignation des valeurs aux paramètres de la requête
+			ps.setInt(1,(int) vehicule_id);
+			// Exécution de la requête
+			ps.execute();
+			ResultSet resultSet = ps.getGeneratedKeys();
+			if(resultSet.next()){
+				return resultSet.getInt(1);
 			}
 
 		}catch (SQLException e){

@@ -18,6 +18,7 @@ public class ReservationSupprimerServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     @Autowired
     private ReservationService reservationService;
+    public ReservationSupprimerServlet() {}
 
     @Override
     public void init() throws ServletException {
@@ -25,8 +26,7 @@ public class ReservationSupprimerServlet extends HttpServlet {
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
     }
 
-    public ReservationSupprimerServlet() {}
-
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             long reservationId = Long.parseLong(request.getParameter("id"));
