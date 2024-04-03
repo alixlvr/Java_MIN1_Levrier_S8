@@ -49,7 +49,7 @@
                                         <a class="btn btn-success" href="${pageContext.request.contextPath}/vehicules/edit?id=${vehicule.id}">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <a class="btn btn-danger" href="${pageContext.request.contextPath}/vehicules/delete?id=${vehicule.id}">
+                                        <a class="btn btn-danger" href="${pageContext.request.contextPath}/vehicules/delete?id=${vehicule.id}" onclick="return confirmDelete();">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </td>
@@ -65,6 +65,11 @@
             </div>
         </section>
         <!-- /.content -->
+        <script>
+            function confirmDelete() {
+                return confirm("Etes-vous sur de vouloir supprimer ce vehicule ?");
+            }
+        </script>
     </div>
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>

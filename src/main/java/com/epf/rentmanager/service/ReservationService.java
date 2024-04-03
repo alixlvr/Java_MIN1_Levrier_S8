@@ -17,7 +17,23 @@ public class ReservationService {
     }
 
 
-    public long create(Reservation reservation) throws ServiceException {
+    public long create(Reservation reservation) throws ServiceException, DaoException {
+
+        // Vérifie si la voiture est déjà réservée le même jour
+        if (reservationDao.VehiculeDejaReserve(reservation.getVehicule_id(), reservation.getDebut())) {
+            throw new ServiceException("La voiture est déjà réservée pour cette date.");
+        }
+
+        // Vérifie de la durée de reservation
+        if (reservationDao.VehiculeReserveMoinsSeptJours(reservation.getVehicule_id(), reservation.getClient_id(), reservation.getDebut(), reservation.getFin())) {
+            throw new ServiceException("La voiture est déjà réservée pour plus de 7 jours de suite par le même utilisateur.");
+        }
+
+        // Vérifie si la voiture est réservée 30 jours de suite sans pause
+        if (reservationDao.VehiculeReservePlusTrenteJours(reservation.getVehicule_id(), reservation.getDebut(), reservation.getFin())) {
+            throw new ServiceException("La voiture est déjà réservée pour 30 jours de suite sans pause.");
+        }
+
         if (reservation.getVehicule_id() == 0 || reservation.getClient_id() == 0) {
             throw new ServiceException("L'id du client et l'id du vehicule ne doit pas être vide");
         }

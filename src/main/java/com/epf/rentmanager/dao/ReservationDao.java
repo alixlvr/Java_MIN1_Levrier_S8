@@ -24,7 +24,9 @@ public class ReservationDao {
 	private static final String FIND_RESERVATIONS_BY_VEHICLE_QUERY = "SELECT id, client_id, debut, fin FROM Reservation WHERE vehicule_id=?;";
 	private static final String FIND_RESERVATIONS_QUERY = "SELECT id, client_id, vehicule_id, debut, fin FROM Reservation;";
 	private static final String COUNT_RESERVATION_QUERY = "SELECT COUNT(*) FROM Reservation;";
-
+	private static final String CHECK_VEHICULE_DATE_QUERY = "SELECT COUNT(*) FROM Reservation WHERE vehicule_id = ? AND debut = ?";
+	private static final String CHECK_VEHICULE_UNDER_SEVEN_DAYS_QUERY = "SELECT COUNT(*) FROM Reservation WHERE vehicule_id = ? AND client_id = ? AND debut BETWEEN ? AND ?";
+	private static final String CHECK_VEHICULE_OVER_THIRTY_DAYS_QUERY = "SELECT COUNT(*) FROM Reservation WHERE vehicule_id = ? AND debut BETWEEN ? AND ?";
 	public long create(Reservation reservation) throws DaoException {
 		try(Connection connection = ConnectionManager.getConnection();
 			Statement statement = connection.createStatement();
@@ -235,7 +237,7 @@ public class ReservationDao {
 	public int count() throws DaoException{
 		try(Connection connection = ConnectionManager.getConnection();
 			Statement statement = connection.createStatement();
-			PreparedStatement ps = connection.prepareStatement(COUNT_RESERVATION_QUERY);){
+			PreparedStatement ps = connection.prepareStatement(COUNT_RESERVATION_QUERY)){
 
 			ResultSet resultSet = ps.executeQuery();
 			if (resultSet.next()) {
@@ -246,5 +248,63 @@ public class ReservationDao {
 			throw new DaoException("Erreur lors du comptage des resrevations de l'etablissement",e);
 		}
 		return -1;
+	}
+
+
+	public boolean VehiculeDejaReserve(long vehiculeId, LocalDate date) throws DaoException {
+		try (Connection connection = ConnectionManager.getConnection();
+			 PreparedStatement statement = connection.prepareStatement(CHECK_VEHICULE_DATE_QUERY)) {
+
+			statement.setLong(1, vehiculeId);
+			statement.setDate(2, java.sql.Date.valueOf(date));
+
+			try (ResultSet resultSet = statement.executeQuery()) {
+				if (resultSet.next()) {
+					return resultSet.getInt(1) > 0;
+				}
+			}
+		} catch (SQLException e) {
+			throw new DaoException("Erreur lors de la vérification de la réservation de la voiture pour la date donnée", e);
+		}
+		return false;
+	}
+
+	// Méthode pour vérifier si la voiture est réservée plus de 7 jours de suite par le même utilisateur
+	public boolean VehiculeReserveMoinsSeptJours(long vehiculeId, long clientId, LocalDate startDate, LocalDate endDate) throws DaoException {
+		try (Connection connection = ConnectionManager.getConnection();
+			 PreparedStatement statement = connection.prepareStatement(CHECK_VEHICULE_UNDER_SEVEN_DAYS_QUERY)) {
+			statement.setLong(1, vehiculeId);
+			statement.setLong(2, clientId);
+			statement.setDate(3, java.sql.Date.valueOf(startDate));
+			statement.setDate(4, java.sql.Date.valueOf(endDate));
+
+			try (ResultSet resultSet = statement.executeQuery()) {
+				if (resultSet.next()) {
+					return resultSet.getInt(1) > 7; // Si la réservation est de plus de 7 jours
+				}
+			}
+		} catch (SQLException e) {
+			throw new DaoException("Erreur lors de la vérification de la durée de la réservation de la voiture par le même utilisateur", e);
+		}
+		return false;
+	}
+
+	// Méthode pour vérifier si la voiture est réservée 30 jours de suite sans pause
+	public boolean VehiculeReservePlusTrenteJours(long vehiculeId, LocalDate startDate, LocalDate endDate) throws DaoException {
+		try (Connection connection = ConnectionManager.getConnection();
+			 PreparedStatement statement = connection.prepareStatement(CHECK_VEHICULE_OVER_THIRTY_DAYS_QUERY)) {
+			statement.setLong(1, vehiculeId);
+			statement.setDate(2, java.sql.Date.valueOf(startDate));
+			statement.setDate(3, java.sql.Date.valueOf(endDate));
+
+			try (ResultSet resultSet = statement.executeQuery()) {
+				if (resultSet.next()) {
+					return resultSet.getInt(1) >= 30; // Si la réservation est de 30 jours ou plus
+				}
+			}
+		} catch (SQLException e) {
+			throw new DaoException("Erreur lors de la vérification de la durée de la réservation de la voiture", e);
+		}
+		return false;
 	}
 }

@@ -49,7 +49,7 @@
                                         <a class="btn btn-success" href="${pageContext.request.contextPath}/reservation/edit?id=${reservation.id}">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <a class="btn btn-danger" href="${pageContext.request.contextPath}/reservation/delete?id=${reservation.id}">
+                                        <a class="btn btn-danger" href="${pageContext.request.contextPath}/reservation/delete?id=${reservation.id}" onclick="return confirmDelete();">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </td>
@@ -65,6 +65,11 @@
             </div>
         </section>
         <!-- /.content -->
+        <script>
+            function confirmDelete() {
+                return confirm("Etes-vous sur de vouloir supprimer cette reservation ?");
+            }
+        </script>
     </div>
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>

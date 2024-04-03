@@ -6,6 +6,7 @@ import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.model.Client;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -16,22 +17,27 @@ public class ClientService {
 	public ClientService(ClientDao clientDao) {
 		this.clientDao = clientDao;
 	}
-//	private ClientDao clientDao;
-//	public static ClientService instance;
-//	private ClientService() {
-//		this.clientDao = ClientDao.getInstance();
-//	}
-//	public static ClientService getInstance() {
-//		if (instance == null) {
-//			instance = new ClientService();
-//		}
-//		return instance;
-//	}
 	
 	
 	public long create(Client client) throws ServiceException {
-		// TODO: créer un client
-		// Vérification du nom et du prénom du client
+		// Vérification de l'âge du client
+		LocalDate today = LocalDate.now();
+		LocalDate eighteenYearsAgo = today.minusYears(18);
+		if (client.getNaissance().isAfter(eighteenYearsAgo)) {
+			throw new ServiceException("Le client doit avoir au moins 18 ans.");
+		}
+
+//		// Vérification de l'unicité de l'adresse email
+//		if (clientService.isEmailAlreadyTaken(client.getEmail())) {
+//			throw new ServiceException("Cette adresse email est déjà utilisée par un autre client.");
+//		}
+
+		// Vérification de la longueur du nom et du prénom
+		if (client.getNom().length() < 3 || client.getPrenom().length() < 3) {
+			throw new ServiceException("Le nom et le prénom du client doivent faire au moins 3 caractères.");
+		}
+
+		// Vérification que le nom et le prénom du client ne sont pas vide
 		if (client.getNom().isEmpty()) {
 			throw new ServiceException("Le nom du client ne peut pas être vide");
 		}else if (client.getPrenom().isEmpty()) {

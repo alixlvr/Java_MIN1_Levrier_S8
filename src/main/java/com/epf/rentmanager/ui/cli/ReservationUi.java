@@ -1,5 +1,6 @@
 package com.epf.rentmanager.ui.cli;
 
+import com.epf.rentmanager.Exception.DaoException;
 import com.epf.rentmanager.Exception.ServiceException;
 import com.epf.rentmanager.configuration.AppConfiguration;
 import com.epf.rentmanager.model.Reservation;
@@ -38,6 +39,8 @@ public class ReservationUi {
 
         } catch (ServiceException e) {
             throw new RuntimeException("Erreur lors de la partie Ui", e);
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
         }
     }
 

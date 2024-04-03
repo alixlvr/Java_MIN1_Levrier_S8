@@ -20,7 +20,6 @@ public class VehiculeService {
 	
 	
 	public long create(Vehicule vehicule) throws ServiceException {
-		// TODO: créer un véhicule
 		// Vérification du nom et du prénom du client
 		if (vehicule.getConstructeur().isEmpty()) {
 			throw new ServiceException("Le constructeur ne peut pas être vide");
