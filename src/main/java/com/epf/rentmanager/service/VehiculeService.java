@@ -17,13 +17,12 @@ public class VehiculeService {
 		this.vehiculeDao = vehiculeDao;
 	}
 
-	
-	
+
 	public long create(Vehicule vehicule) throws ServiceException {
 		// Vérification du nom et du prénom du client
 		if (vehicule.getConstructeur().isEmpty()) {
 			throw new ServiceException("Le constructeur ne peut pas être vide");
-		}else if (vehicule.getNb_places() <= 1) {
+		} else if (vehicule.getNb_places() <= 1) {
 			throw new ServiceException("Le nombre de places dans le vehicule doit etre strictement supérieur à 1");
 		}
 
@@ -64,12 +63,20 @@ public class VehiculeService {
 		}
 	}
 
-	public int count() throws ServiceException{
+	public int count() throws ServiceException {
 		try {
 			return vehiculeDao.count();
-		} catch(DaoException e) {
+		} catch (DaoException e) {
 			throw new ServiceException("Erreur lors de la suppresion des vehicules par ID(service)", e);
 		}
 	}
-	
+
+	public void update(Vehicule vehicule) throws ServiceException {
+		try {
+			vehiculeDao.update(vehicule);
+		} catch (DaoException e) {
+			throw new ServiceException("Erreur lors de la recuperation de la DAO vehicule (update d'un vehicule)", e);
+		}
+	}
+
 }

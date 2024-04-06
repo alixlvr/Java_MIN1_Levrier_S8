@@ -63,6 +63,12 @@
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="fin" name="fin" required
                                                data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                                        <% if (request.getAttribute("ReservationDateError") != null) { %>
+                                        <p style="color: red;"><%= request.getAttribute("ReservationDateError") %></p>
+                                        <% } %>
+                                        <% if (request.getAttribute("7joursError") != null) { %>
+                                        <p style="color: red;"><%= request.getAttribute("7joursError") %></p>
+                                        <% } %>
                                     </div>
                                 </div>
                             </div>

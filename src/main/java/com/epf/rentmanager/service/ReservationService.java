@@ -6,6 +6,8 @@ import com.epf.rentmanager.dao.ReservationDao;
 import com.epf.rentmanager.model.Reservation;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -18,21 +20,6 @@ public class ReservationService {
 
 
     public long create(Reservation reservation) throws ServiceException, DaoException {
-
-        // Vérifie si la voiture est déjà réservée le même jour
-        if (reservationDao.VehiculeDejaReserve(reservation.getVehicule_id(), reservation.getDebut())) {
-            throw new ServiceException("La voiture est déjà réservée pour cette date.");
-        }
-
-        // Vérifie de la durée de reservation
-        if (reservationDao.VehiculeReserveMoinsSeptJours(reservation.getVehicule_id(), reservation.getClient_id(), reservation.getDebut(), reservation.getFin())) {
-            throw new ServiceException("La voiture est déjà réservée pour plus de 7 jours de suite par le même utilisateur.");
-        }
-
-        // Vérifie si la voiture est réservée 30 jours de suite sans pause
-        if (reservationDao.VehiculeReservePlusTrenteJours(reservation.getVehicule_id(), reservation.getDebut(), reservation.getFin())) {
-            throw new ServiceException("La voiture est déjà réservée pour 30 jours de suite sans pause.");
-        }
 
         if (reservation.getVehicule_id() == 0 || reservation.getClient_id() == 0) {
             throw new ServiceException("L'id du client et l'id du vehicule ne doit pas être vide");
@@ -101,11 +88,37 @@ public class ReservationService {
         }
     }
 
+    public boolean VehiculeDejaReserve(long vehicule_id, LocalDate debut, LocalDate fin) throws ServiceException {
+        try {
+            return reservationDao.VehiculeDejaReserve(vehicule_id, debut, fin);
+        } catch (DaoException e) {
+            throw new ServiceException("Erreur lors de la suppression des vehicules (service)", e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean ReservationPlusSeptJours(long client_id, long vehicule_id, LocalDate debut, LocalDate fin) throws ServiceException {
+        try {
+            return reservationDao.ReservationPlusSeptJours(client_id, vehicule_id, debut, fin);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public int count() throws ServiceException{
         try {
             return reservationDao.count();
         } catch(DaoException e) {
             throw new ServiceException("Erreur lors de la recuperation de la DAO client (compter le nb de client)", e);
+        }
+    }
+
+    public void update(Reservation reservation) throws ServiceException {
+        try {
+            reservationDao.update(reservation);
+        } catch (DaoException e) {
+            throw new ServiceException("Erreur lors de la recuperation de la DAO vehicule (update d'un vehicule)", e);
         }
     }
 }

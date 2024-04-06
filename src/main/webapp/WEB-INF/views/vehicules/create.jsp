@@ -25,9 +25,6 @@
                     <!-- Horizontal Form -->
                     <div class="box">
                         <!-- form start -->
-                        <!-- Le  type de methode http qui sera appel� lors de action submit du formulaire -->
-                        <!-- est d�crit an l'attribut "method" de la balise forme -->
-                        <!-- action indique � quel "cible" sera envoyr la requ�te, ici notre Servlet qui sera bind sur -->
                         <!-- /vehicles/create -->
                         <form class="form-horizontal" method="post">
                             <div class="box-body">
@@ -39,6 +36,9 @@
 									<!-- de l'attribut "name" de l'input -->
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="constructeur" name="constructeur" placeholder="Marque" required>
+                                        <% if (request.getAttribute("ConstructeurError") != null) { %>
+                                        <span class="text-danger"><%= request.getAttribute("ConstructeurError") %></span>
+                                        <% } %>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -46,6 +46,9 @@
 
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="modele" name="modele" placeholder="Modele" required>
+                                        <% if (request.getAttribute("ModeleError") != null) { %>
+                                        <span class="text-danger"><%= request.getAttribute("ModeleError") %></span>
+                                        <% } %>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -53,6 +56,9 @@
 
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="nb_places" name="nb_places" placeholder="Nombre de places" required>
+                                        <% if (request.getAttribute("placesError") != null) { %>
+                                        <span class="text-danger"><%= request.getAttribute("placesError") %></span>
+                                        <% } %>
                                     </div>
                                 </div>
                                 <!--

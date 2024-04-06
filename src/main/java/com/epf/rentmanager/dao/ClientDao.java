@@ -13,27 +13,20 @@ import java.util.List;
 @Repository
 public class ClientDao {
 	public ClientDao() {}
-
-//	private static ClientDao instance = null;
-//	private ClientDao() {}
-//	public static ClientDao getInstance() {
-//		if(instance == null) {
-//			instance = new ClientDao();
-//		}
-//		return instance;
-//	}
 	
 	private static final String CREATE_CLIENT_QUERY = "INSERT INTO Client(nom, prenom, email, naissance) VALUES(?, ?, ?, ?);";
 	private static final String DELETE_CLIENT_QUERY = "DELETE FROM Client WHERE id=?;";
 	private static final String FIND_CLIENT_QUERY = "SELECT nom, prenom, email, naissance FROM Client WHERE id=?;";
 	private static final String FIND_CLIENTS_QUERY = "SELECT id, nom, prenom, email, naissance FROM Client;";
 	private static final String COUNT_CLIENT_QUERY = "SELECT COUNT(*) FROM Client;";
+	private static final String UPDATE_CLIENT_QUERY = "UPDATE client SET nom=?, prenom=?, email=?, naissance=? WHERE id=?";
+	private static final String EMAIL_CLIENT_QUERY = "SELECT COUNT(*) FROM client WHERE email = ?";
 
 	public long create(Client client) throws DaoException {
 		try(Connection connection = ConnectionManager.getConnection();
 			Statement statement = connection.createStatement();
-			PreparedStatement preparedStatement = connection.prepareStatement(CREATE_CLIENT_QUERY, statement.RETURN_GENERATED_KEYS);
-		){
+			PreparedStatement preparedStatement = connection.prepareStatement(CREATE_CLIENT_QUERY, statement.RETURN_GENERATED_KEYS)){
+
 			// Assignation des valeurs aux paramètres de la requête
 			preparedStatement.setString(1, client.getNom());
 			preparedStatement.setString(2, client.getPrenom());
@@ -60,7 +53,7 @@ public class ClientDao {
 	public long delete(Client client) throws DaoException {
 		try(Connection connection = ConnectionManager.getConnection();
 			Statement statement = connection.createStatement();
-			PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CLIENT_QUERY, statement.RETURN_GENERATED_KEYS);){
+			PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CLIENT_QUERY, statement.RETURN_GENERATED_KEYS)){
 
 			// Assignation des valeurs aux paramètres de la requête
 			preparedStatement.setInt(1, client.getId());
@@ -84,8 +77,7 @@ public class ClientDao {
 
 	public Client findById(long id) throws DaoException {
 		try (Connection connection = ConnectionManager.getConnection();
-			 Statement statement = connection.createStatement();
-			 PreparedStatement preparedStatement = connection.prepareStatement(FIND_CLIENT_QUERY);){
+			 PreparedStatement preparedStatement = connection.prepareStatement(FIND_CLIENT_QUERY)){
 
 			// Assignation des valeurs aux paramètres de la requête
 			preparedStatement.setInt(1, (int) id);
@@ -117,8 +109,7 @@ public class ClientDao {
 
         public List<Client> findAll() throws DaoException {
 		try (Connection connection = ConnectionManager.getConnection();
-			 Statement statement = connection.createStatement();
-			 PreparedStatement preparedStatement = connection.prepareStatement(FIND_CLIENTS_QUERY);){
+			 PreparedStatement preparedStatement = connection.prepareStatement(FIND_CLIENTS_QUERY)){
 
 			//execution de la requete
 			preparedStatement.execute();
@@ -146,7 +137,7 @@ public class ClientDao {
 	public int count() throws DaoException{
 		try(Connection connection = ConnectionManager.getConnection();
 			Statement statement = connection.createStatement();
-			PreparedStatement ps = connection.prepareStatement(COUNT_CLIENT_QUERY);){
+			PreparedStatement ps = connection.prepareStatement(COUNT_CLIENT_QUERY)){
 
 			ResultSet resultSet = ps.executeQuery();
 			if (resultSet.next()) {
@@ -157,6 +148,38 @@ public class ClientDao {
 			throw new DaoException("Erreur lors du comptage des clients de l'etablissement",e);
 		}
 		return -1;
+	}
+
+	public void update(Client client) throws DaoException {
+		try (Connection connection = ConnectionManager.getConnection();
+			 PreparedStatement statement = connection.prepareStatement(UPDATE_CLIENT_QUERY)) {
+
+			statement.setString(1, client.getPrenom());
+			statement.setString(2, client.getNom());
+			statement.setString(3, client.getEmail());
+			statement.setString(3, String.valueOf(client.getNaissance()));
+			statement.setLong(4, client.getId());
+
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new DaoException("Erreur lors de la mise à jour du client", e);
+		}
+	}
+
+	public boolean emailExists(String email) throws DaoException {
+		try (Connection connection = ConnectionManager.getConnection();
+			 PreparedStatement statement = connection.prepareStatement(EMAIL_CLIENT_QUERY)) {
+
+			statement.setString(1, email);
+			try (ResultSet resultSet = statement.executeQuery()) {
+				if (resultSet.next()) {
+					return resultSet.getInt(1) > 0;
+				}
+			}
+		} catch (SQLException e) {
+			throw new DaoException("Erreur lors de la vérification de l'existence de l'adresse e-mail du client dans la base de données", e);
+		}
+		return false;
 	}
 
 }

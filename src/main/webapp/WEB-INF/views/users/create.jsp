@@ -29,31 +29,43 @@
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="nom" class="col-sm-2 control-label">Nom</label>
-
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom">
+                                        <% if (request.getAttribute("NomError") != null) { %>
+                                        <span class="text-danger"><%= request.getAttribute("NomError") %></span>
+                                        <% } %>
                                     </div>
+
                                 </div>
                                 <div class="form-group">
                                     <label for="prenom" class="col-sm-2 control-label">Prenom</label>
-
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prenom">
+                                        <% if (request.getAttribute("PrenomError") != null) { %>
+                                        <span class="text-danger"><%= request.getAttribute("PrenomError") %></span>
+                                        <% } %>
                                     </div>
+
                                 </div>
                                 <div class="form-group">
                                     <label for="email" class="col-sm-2 control-label">Email</label>
-
                                     <div class="col-sm-10">
                                         <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                        <% if (request.getAttribute("birthdateError") != null) { %>
+                                        <span class="text-danger"><%= request.getAttribute("birthdateError") %></span>
+                                        <% } %>
                                     </div>
+
                                 </div>
                                 <div class="form-group">
                                     <label for="naissance" class="col-sm-2 control-label">Naissance</label>
-
                                     <div class="col-sm-10">
                                         <input type="date" class="form-control" id="naissance" name="naissance" placeholder="Naissance">
+                                        <% if (request.getAttribute("EmailError") != null) { %>
+                                        <span class="text-danger"><%= request.getAttribute("EmailError") %></span>
+                                        <% } %>
                                     </div>
+
                                 </div>
                             </div>
                             <!-- /.box-body -->

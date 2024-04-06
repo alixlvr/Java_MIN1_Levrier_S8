@@ -18,10 +18,12 @@ public class VehiculeDao {
 	private static final String FIND_VEHICLE_QUERY = "SELECT id, constructeur, modele, nb_places FROM Vehicule WHERE id=?;";
 	private static final String FIND_VEHICLES_QUERY = "SELECT id, constructeur, modele, nb_places FROM Vehicule;";
 	private static final String COUNT_VEHICULES_QUERY = "SELECT COUNT(*) FROM Vehicule;";
+	private static final String UPDATE_VEHICULE_QUERY = "UPDATE vehicule SET constructeur=?, modele=?, nb_places=? WHERE id=?";
+
 	public long create(Vehicule vehicule) throws DaoException {
 		try(Connection connection = ConnectionManager.getConnection();
 			Statement statement = connection.createStatement();
-			PreparedStatement ps = connection.prepareStatement(CREATE_VEHICLE_QUERY, statement.RETURN_GENERATED_KEYS);){
+			PreparedStatement ps = connection.prepareStatement(CREATE_VEHICLE_QUERY, statement.RETURN_GENERATED_KEYS)){
 
 			// Assignation des valeurs aux paramètres de la requête
 			ps.setString(1, vehicule.getConstructeur());
@@ -47,12 +49,9 @@ public class VehiculeDao {
 	public long delete(Vehicule vehicle) throws DaoException {
 		try(Connection connection = ConnectionManager.getConnection();
 			Statement statement = connection.createStatement();
-			PreparedStatement preparedStatement = connection.prepareStatement(DELETE_VEHICLE_QUERY, statement.RETURN_GENERATED_KEYS);){
+			PreparedStatement preparedStatement = connection.prepareStatement(DELETE_VEHICLE_QUERY, statement.RETURN_GENERATED_KEYS)){
 
-			// Assignation des valeurs aux paramètres de la requête
 			preparedStatement.setInt(1, vehicle.getId());
-
-			// Exécution de la requête
 			preparedStatement.execute();
 
 			ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -70,23 +69,18 @@ public class VehiculeDao {
 
 	public Vehicule findById(long id) throws DaoException {
 		try (Connection connection = ConnectionManager.getConnection();
-			 Statement statement = connection.createStatement();
-			 PreparedStatement preparedStatement = connection.prepareStatement(FIND_VEHICLE_QUERY);){
+			 PreparedStatement preparedStatement = connection.prepareStatement(FIND_VEHICLE_QUERY)){
 
-			// Assignation des valeurs aux paramètres de la requête
+
 			preparedStatement.setInt(1, (int) id);
-
-			// Exécution de la requête
 			preparedStatement.execute();
 
 			ResultSet resultSet = preparedStatement.executeQuery();
 			if(resultSet.next()){
-				// Récupération des données du vehicule trouvé
 				String constructeur = resultSet.getString("constructeur");
 				String modele = resultSet.getString("modele");
 				int places = resultSet.getInt("nb_places");
 
-				// Création d'une instance de Client avec les données trouvées
 				return new Vehicule((int)id, constructeur, modele, places);
 
 			}else {
@@ -101,18 +95,14 @@ public class VehiculeDao {
 
 	public List<Vehicule> findAll() throws DaoException {
 		try (Connection connection = ConnectionManager.getConnection();
-			 Statement statement = connection.createStatement();
-			 PreparedStatement ps = connection.prepareStatement(FIND_VEHICLES_QUERY);){
+			 PreparedStatement ps = connection.prepareStatement(FIND_VEHICLES_QUERY)){
 
-			//execution de la requete
 			ps.execute();
-			//resultat de la requete
+
 			ResultSet resultSet = ps.executeQuery();
 			List<Vehicule>Allvehicule = new ArrayList<>();
 
-			// Traitement des résultats
 			while (resultSet.next()) {
-				// Récupération des données du vehicule trouvé
 				int id = resultSet.getInt("id");
 				String constructeur = resultSet.getString("constructeur");
 				String modele = resultSet.getString("modele");
@@ -129,8 +119,7 @@ public class VehiculeDao {
 
 	public int count() throws DaoException{
 		try(Connection connection = ConnectionManager.getConnection();
-			Statement statement = connection.createStatement();
-			PreparedStatement ps = connection.prepareStatement(COUNT_VEHICULES_QUERY);){
+			PreparedStatement ps = connection.prepareStatement(COUNT_VEHICULES_QUERY)){
 
 			ResultSet resultSet = ps.executeQuery();
 			if (resultSet.next()) {
@@ -141,6 +130,21 @@ public class VehiculeDao {
 			throw new DaoException("Erreur lors du comptage des vehicules de l'etablissement",e);
 		}
 		return -1;
+	}
+
+	public void update(Vehicule vehicule) throws DaoException {
+		try (Connection connection = ConnectionManager.getConnection();
+			 PreparedStatement statement = connection.prepareStatement(UPDATE_VEHICULE_QUERY)) {
+
+			statement.setString(1, vehicule.getConstructeur());
+			statement.setString(2, vehicule.getModele());
+			statement.setInt(3, vehicule.getNb_places());
+			statement.setLong(4, vehicule.getId());
+
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new DaoException("Erreur lors de la mise à jour du client", e);
+		}
 	}
 	
 

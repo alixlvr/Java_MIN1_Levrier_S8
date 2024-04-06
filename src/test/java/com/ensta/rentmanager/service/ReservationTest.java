@@ -1,6 +1,7 @@
 package com.ensta.rentmanager.service;
 
 
+import com.epf.rentmanager.Exception.DaoException;
 import com.epf.rentmanager.Exception.ServiceException;
 import com.epf.rentmanager.dao.ReservationDao;
 import com.epf.rentmanager.model.Reservation;
@@ -35,6 +36,8 @@ public class ReservationTest {
         } catch (ServiceException e) {
             // Then
             assertEquals("L'id du client et l'id du vehicule ne doit pas être vide", e.getMessage());
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -49,6 +52,8 @@ public class ReservationTest {
         } catch (ServiceException e) {
             // Then
             assertEquals("L'id du client et l'id du vehicule ne doit pas être vide", e.getMessage());
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
         }
     }
 }
