@@ -14,7 +14,7 @@
                         <div class="box-header with-border">
                             <h3 class="box-title">Modifier les informations du vehicule</h3>
                         </div>
-                        <form role="form" action="${pageContext.request.contextPath}/vehicules/list" method="post">
+                        <form role="form" method="post">
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="constructeur">Constructeur</label>
@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                <button type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/vehicules/list">Enregistrer</button>
                                 <a href="${pageContext.request.contextPath}/vehicules/list" class="btn btn-default">Annuler</a>
                             </div>
                         </form>

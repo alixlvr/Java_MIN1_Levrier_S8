@@ -14,7 +14,7 @@
                         <div class="box-header with-border">
                             <h3 class="box-title">Modifier les informations du client</h3>
                         </div>
-                        <form role="form" action="${pageContext.request.contextPath}/client/list" method="post">
+                        <form role="form" method="post">
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="prenom">Prenom</label>
@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                <button type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/client/list">Enregistrer</button>
                                 <a href="${pageContext.request.contextPath}/client/list" class="btn btn-default">Annuler</a>
                             </div>
                         </form>

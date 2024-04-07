@@ -7,7 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Repository
@@ -290,7 +292,6 @@ public class ReservationDao {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
-
 		try {
 			connection = ConnectionManager.getConnection();
 			preparedStatement = connection.prepareStatement(CHECK_RESERVATION_QUERY);
@@ -302,7 +303,7 @@ public class ReservationDao {
 
 			if (resultSet.next()) {
 				int count = resultSet.getInt(1);
-				return count <= 7;
+				return count >= 7;
 			}
 		} finally {
 			if (resultSet != null) {
@@ -319,22 +320,25 @@ public class ReservationDao {
 	}
 
 	// Méthode pour vérifier si la voiture est réservée 30 jours de suite sans pause
-	public boolean VehiculeReservePlusTrenteJours(long vehiculeId, LocalDate startDate, LocalDate endDate) throws DaoException {
-		try (Connection connection = ConnectionManager.getConnection();
-			 PreparedStatement statement = connection.prepareStatement(CHECK_VEHICULE_OVER_THIRTY_DAYS_QUERY)) {
-			statement.setLong(1, vehiculeId);
-			statement.setDate(2, java.sql.Date.valueOf(startDate));
-			statement.setDate(3, java.sql.Date.valueOf(endDate));
-
-			try (ResultSet resultSet = statement.executeQuery()) {
-				if (resultSet.next()) {
-					return resultSet.getInt(1) >= 30; // Si la réservation est de 30 jours ou plus
+	public boolean ReservationDureVehicule(LocalDate debut, LocalDate fin, List<Reservation> vehiculeReservations) throws DaoException {
+		vehiculeReservations.sort(Comparator.comparing(Reservation::getDebut));
+		long totalDays = 0;
+		long newReservationDays = ChronoUnit.DAYS.between(debut, fin);
+		for (int i = 0; i < vehiculeReservations.size(); i++) {
+			Reservation currentReservation = vehiculeReservations.get(i);
+			if (i > 0) {
+				LocalDate previousReservationEndDate = vehiculeReservations.get(i - 1).getFin();
+				if (!debut.equals(previousReservationEndDate.plusDays(1))) {
+					if (totalDays > 30) {
+						return true;
+					}
 				}
 			}
-		} catch (SQLException e) {
-			throw new DaoException("Erreur lors de la vérification de la durée de la réservation de la voiture", e);
+			totalDays += ChronoUnit.DAYS.between(currentReservation.getDebut(), currentReservation.getFin()) + 1;
+			System.out.println(" : "+totalDays);
 		}
-		return false;
+		totalDays += newReservationDays;
+		return totalDays > 30;
 	}
 
 	public void update(Reservation reservation) throws DaoException {
@@ -347,7 +351,7 @@ public class ReservationDao {
 
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new DaoException("Erreur lors de la mise à jour du client", e);
+			throw new DaoException("Erreur lors de la mise à jour de la reservation", e);
 		}
 	}
 }

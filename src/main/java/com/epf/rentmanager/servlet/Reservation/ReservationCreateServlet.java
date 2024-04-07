@@ -68,9 +68,18 @@ public class ReservationCreateServlet extends HttpServlet {
                 return;
             }
 
-            // Vérifier si la réservation est valide
+            // Vérifier si la durée de la réservation est de moins de 7 jours
             if (reservationService.ReservationPlusSeptJours(client_id, vehicule_id, debut, fin)) {
                 request.setAttribute("7joursError", "Impossible de créer une reservation de plus de sept jours par la meme personne.");
+                request.getRequestDispatcher("/WEB-INF/views/rents/create.jsp").forward(request, response);
+                return;
+            }
+
+            // Récupérer les réservations existantes pour ce véhicule
+            List<Reservation> vehiculeReservations = reservationService.findByVehicule(vehicule_id);
+            // Vérifier si la nouvelle réservation est valide
+            if (reservationService.ReservationDureVehicule(debut, fin, vehiculeReservations)) {
+                request.setAttribute("30joursError", "Impossible de créer une reservation à cette date la car notre voiture à été reservé plus de 30 jours sans pause.");
                 request.getRequestDispatcher("/WEB-INF/views/rents/create.jsp").forward(request, response);
                 return;
             }

@@ -154,11 +154,11 @@ public class ClientDao {
 		try (Connection connection = ConnectionManager.getConnection();
 			 PreparedStatement statement = connection.prepareStatement(UPDATE_CLIENT_QUERY)) {
 
-			statement.setString(1, client.getPrenom());
-			statement.setString(2, client.getNom());
+			statement.setString(1, client.getNom());
+			statement.setString(2, client.getPrenom());
 			statement.setString(3, client.getEmail());
-			statement.setString(3, String.valueOf(client.getNaissance()));
-			statement.setLong(4, client.getId());
+			statement.setString(4, String.valueOf(client.getNaissance()));
+			statement.setLong(5, client.getId());
 
 			statement.executeUpdate();
 		} catch (SQLException e) {

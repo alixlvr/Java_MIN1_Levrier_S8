@@ -14,15 +14,15 @@
                         <div class="box-header with-border">
                             <h3 class="box-title">Modifier les informations de la reservation</h3>
                         </div>
-                        <form role="form" action="${pageContext.request.contextPath}/reservation/list" method="post">
+                        <form role="form" method="post">
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="client_id">Id du client</label>
-                                    <input type="number" class="form-control" id="client_id" name="client_id" value="${reservation.client_id}" disabled>
+                                    <input type="number" class="form-control" id="client_id" name="client_id" value="${reservation.client_id}">
                                 </div>
                                 <div class="form-group">
                                     <label for="vehicule_id">Id du vehicule</label>
-                                    <input type="number" class="form-control" id="vehicule_id" name="vehicule_id" value="${reservation.vehicule_id}" disabled>
+                                    <input type="number" class="form-control" id="vehicule_id" name="vehicule_id" value="${reservation.vehicule_id}" >
                                 </div>
                                 <div class="form-group">
                                     <label for="debut">Date de debut de la reservation</label>
@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                <button type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/reservation/list">Enregistrer</button>
                                 <a href="${pageContext.request.contextPath}/reservation/list" class="btn btn-default">Annuler</a>
                             </div>
                         </form>

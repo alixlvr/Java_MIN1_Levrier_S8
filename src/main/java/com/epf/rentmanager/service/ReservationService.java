@@ -106,7 +106,15 @@ public class ReservationService {
         }
     }
 
-    public int count() throws ServiceException{
+    public boolean ReservationDureVehicule(LocalDate debut, LocalDate fin, List<Reservation> vehiculeReservations) throws ServiceException {
+        try {
+            return reservationDao.ReservationDureVehicule(debut, fin, vehiculeReservations);
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+        public int count() throws ServiceException{
         try {
             return reservationDao.count();
         } catch(DaoException e) {

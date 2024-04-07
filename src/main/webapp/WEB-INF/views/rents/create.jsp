@@ -69,6 +69,9 @@
                                         <% if (request.getAttribute("7joursError") != null) { %>
                                         <p style="color: red;"><%= request.getAttribute("7joursError") %></p>
                                         <% } %>
+                                        <% if (request.getAttribute("30joursError") != null) { %>
+                                        <p style="color: red;"><%= request.getAttribute("30joursError") %></p>
+                                        <% } %>
                                     </div>
                                 </div>
                             </div>

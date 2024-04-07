@@ -53,7 +53,6 @@ public class VehiculeDao {
 
 			preparedStatement.setInt(1, vehicle.getId());
 			preparedStatement.execute();
-
 			ResultSet resultSet = preparedStatement.getGeneratedKeys();
 			if(resultSet.next()){
 				return resultSet.getInt(1);
@@ -71,7 +70,6 @@ public class VehiculeDao {
 		try (Connection connection = ConnectionManager.getConnection();
 			 PreparedStatement preparedStatement = connection.prepareStatement(FIND_VEHICLE_QUERY)){
 
-
 			preparedStatement.setInt(1, (int) id);
 			preparedStatement.execute();
 
@@ -80,9 +78,7 @@ public class VehiculeDao {
 				String constructeur = resultSet.getString("constructeur");
 				String modele = resultSet.getString("modele");
 				int places = resultSet.getInt("nb_places");
-
 				return new Vehicule((int)id, constructeur, modele, places);
-
 			}else {
 				System.out.println("Aucun vehicule trouvé avec l'ID : " + id);
 			}
@@ -98,7 +94,6 @@ public class VehiculeDao {
 			 PreparedStatement ps = connection.prepareStatement(FIND_VEHICLES_QUERY)){
 
 			ps.execute();
-
 			ResultSet resultSet = ps.executeQuery();
 			List<Vehicule>Allvehicule = new ArrayList<>();
 
@@ -125,7 +120,6 @@ public class VehiculeDao {
 			if (resultSet.next()) {
 				return resultSet.getInt(1);
 			}
-
 		} catch (SQLException e) {
 			throw new DaoException("Erreur lors du comptage des vehicules de l'etablissement",e);
 		}
